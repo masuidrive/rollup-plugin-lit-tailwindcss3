@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
-      ematrix:
+      matrix:
         node-version: [16.x]
 
     steps:
