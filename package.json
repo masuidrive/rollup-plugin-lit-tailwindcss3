@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-lit-tailwindcss3",
-  "version": "0.1.0-development",
+  "version": "0.0.0-development",
   "description": "inject tailwindcss3 class into lit css tag",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
