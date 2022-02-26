@@ -12,6 +12,8 @@ test('processes lit component', async (t) => {
       litTailwindcss({
         include: 'fixtures/component.js',
         placeholder: 'tw_placeholder',
+        globalCSS: "../test_config/tailwind.global.css",
+        config: "../test_config/tailwind.config.js"
       }),
     ],
   });
