@@ -1,5 +1,5 @@
 {
-  "name": "rollup-plugin-lit2-tailwindcss3",
+  "name": "rollup-plugin-lit-tailwindcss3",
   "version": "0.1.0-development",
   "description": "inject tailwindcss3 class into lit css tag",
   "main": "dist/index.cjs.js",
@@ -20,7 +20,6 @@
     "rollup",
     "plugin",
     "lit",
-    "lit2",
     "tailwindcss",
     "tailwindcss3"
   ],
@@ -49,7 +48,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/masuidrive/rollup-plugin-lit2-tailwindcss3.git"
+    "url": "https://github.com/masuidrive/rollup-plugin-lit-tailwindcss3.git"
   },
-  "homepage": "https://github.com/masuidrive/rollup-plugin-lit2-tailwindcss3"
+  "homepage": "https://github.com/masuidrive/rollup-plugin-lit-tailwindcss3"
 }

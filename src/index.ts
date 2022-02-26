@@ -67,7 +67,7 @@ export default function litTailwindcss(options: TailwindPluginOptions) {
   const filter = createFilter(opts.include, opts.exclude);
 
   return {
-    name: "lit2-tailwindcss3",
+    name: "lit-tailwindcss3",
 
     transform(code: string, id: string) {
       if (!filter(id)) return;

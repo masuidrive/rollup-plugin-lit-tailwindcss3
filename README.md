@@ -1,13 +1,13 @@
-# rollup-plugin-lit2-tailwindcss3
+# rollup-plugin-lit-tailwindcss3
 
-Inject tailwind compiled CCS into Lit components.
+Inject tailwind v3 compiled CSS into Lit components.
 
 This plugin original is https://github.com/mchasaegh/rollup-plugin-lit-tailwindcss
 
 ## rollup.config.js
 
 ```js
-import litTailwind from "rollup-plugin-lit2-tailwindcss3";
+import litTailwind from "rollup-plugin-lit-tailwindcss3";
 
 export default {
   input: "src/index.ts",
@@ -48,7 +48,7 @@ module.exports = {
 @tailwind utilities;
 ```
 
-## Lit component filee
+## Lit component file
 
 ```ts
 import { html, css, LitElement } from "lit";
