@@ -13,36 +13,42 @@
   "scripts": {
     "build": "rollup -c",
     "semantic-release": "semantic-release --branches main",
-    "test": "ava"
+    "test": "rollup -c && ava",
+    "test:update-snapshots": "rollup -c && ava --update-snapshots"
   },
   "keywords": [
     "rollup",
     "plugin",
     "lit",
-    "tailwindcss"
+    "lit2",
+    "tailwindcss",
+    "tailwindcss3"
   ],
-  "author": "mcha",
+  "author": "masuidrive",
   "license": "MIT",
   "peerDependencies": {
     "autoprefixer": "^10.2.6",
     "postcss": "^8.3.0",
     "rollup": "^1.20.0 || ^2.0.0",
-    "tailwindcss": "^2.1.4"
+    "tailwindcss": "^3"
   },
   "devDependencies": {
     "@rollup/plugin-buble": "^0.21.3",
+    "@rollup/plugin-typescript": "^8.3.1",
     "@rollup/pluginutils": "^4.1.0",
+    "@types/autoprefixer": "^10.2.0",
+    "@types/tailwindcss": "^3",
     "autoprefixer": "^10.2.6",
     "ava": "^3.15.0",
-    "lit": "^2.0.0-rc.2",
+    "lit": "^2",
     "postcss": "^8.3.0",
     "rollup": "^2.50.6",
-    "semantic-release": "^17.4.3",
-    "tailwindcss": "^2.1.4"
+    "semantic-release": "^19.0.2",
+    "tailwindcss": "^3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mcha-dev/lit-tailwindcss.git"
+    "url": "https://github.com/masuidrive/rollup-plugin-lit2-tailwindcss3.git"
   },
-  "homepage": "https://github.com/mcha-dev/lit-tailwindcss"
+  "homepage": "https://github.com/masuidrive/rollup-plugin-lit2-tailwindcss3"
 }

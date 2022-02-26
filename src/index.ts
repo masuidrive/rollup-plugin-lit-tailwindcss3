@@ -1,16 +1,18 @@
-import { createFilter } from '@rollup/pluginutils';
-import postcss from 'postcss';
-import tailwindcss from 'tailwindcss';
-import autoprefixer from 'autoprefixer';
+import { createFilter } from "@rollup/pluginutils";
+import postcss from "postcss";
+import tailwindcss from "tailwindcss";
+import autoprefixer from "autoprefixer";
 
-function postcssTw(purgeFile) {
+function postcssTw(purgeFile: string) {
   const plugins = [
     tailwindcss({
-      config: { mode: 'jit', purge: [purgeFile], separator: ':' },
+      // mode: "jit",
+      theme: {},
+      purge: [purgeFile],
     }),
     autoprefixer,
   ];
-  return postcss(plugins).process('@tailwind utilities;', {
+  return postcss(plugins).process("@tailwind utilities;", {
     from: undefined,
     to: undefined,
   });
@@ -29,16 +31,16 @@ export default function litTailwindcss(options = defaultOptions) {
   const filter = createFilter(options.include, options.exclude);
 
   return {
-    name: 'lit-tailwindcss',
+    name: "lit-tailwindcss",
 
-    transform(code, id) {
-      if (!filter(id)) return;
-      if (code.includes(options.placeholder)) {
-        return postcssTw(id).then((result) => {
+    transform(code: string, file: string) {
+      if (!filter(file)) return;
+      if (options.placeholder && code.includes(options.placeholder)) {
+        return postcssTw(file).then((result) => {
           if (result.css) {
             return code.replace(
-              options.placeholder,
-              result.css.replace(/:/g, '\\:'),
+              options.placeholder!,
+              result.css.replace(/:/g, "\\:")
             );
           }
           return null;
