@@ -1,5 +1,7 @@
 # rollup-plugin-lit-tailwindcss3
 
+[![npm version](https://badge.fury.io/js/rollup-plugin-lit-tailwindcss3.svg)](https://badge.fury.io/js/rollup-plugin-lit-tailwindcss3)
+
 Inject tailwind v3 compiled CSS into Lit components.
 
 This plugin original is https://github.com/mchasaegh/rollup-plugin-lit-tailwindcss
