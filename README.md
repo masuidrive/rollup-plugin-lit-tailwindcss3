@@ -48,6 +48,7 @@ litTailwind({
   globalCSS: "tailwind.global.css",
 })
 ```
+
 - `include` (string, required) - file matcher for Lit components
 - `exclude` (string) - file exlude matcher for Lit components
 - `placeholder` (string, required) - placeholder that replaces it to compiled tailwindcss in Lit components
@@ -75,11 +76,11 @@ You need to set `@tailwind` directive in this file.
 
 ```css
 @tailwind base;
-@tailwind component;
+@tailwind components;
 @tailwind utilities;
 ```
 
-### Lit component file
+### Lit components file
 
 Replace placeholder to compiled tailwindcss in Lit components that's specified `include` and `exclude` in `rollup.config.js`.
 
@@ -110,7 +111,6 @@ export class SimpleComponent extends LitElement {
 ## Changelog
 
 See https://github.com/masuidrive/rollup-plugin-lit-tailwindcss3/releases/
-
 
 ## Thank you
 
