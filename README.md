@@ -2,11 +2,20 @@
 
 [![npm version](https://badge.fury.io/js/rollup-plugin-lit-tailwindcss3.svg)](https://badge.fury.io/js/rollup-plugin-lit-tailwindcss3)
 
-Inject tailwind v3 compiled CSS into Lit components.
+Inject tailwindcss v3 compiled CSS into Lit components.
 
-This plugin original is https://github.com/mchasaegh/rollup-plugin-lit-tailwindcss
+```
+npm install --save rollup-plugin-lit-tailwindcss3
+```
 
-## rollup.config.js
+## Requirements
+
+- Lit v2.0 and later
+- Tailwindcss v3.0 and later
+
+## Usage
+
+### rollup.config.js
 
 ```js
 import litTailwind from "rollup-plugin-lit-tailwindcss3";
@@ -28,7 +37,24 @@ export default {
 };
 ```
 
-## tailwind.config.js
+### Options
+
+```
+litTailwind({
+  include: "src/components/**/*.ts",
+  exclude: "**/data/*.ts",
+  placeholder: "tw_placeholder",
+  config: "tailwind.config.js",
+  globalCSS: "tailwind.global.css",
+})
+```
+- `include` (string, required) - file matcher for Lit components
+- `exclude` (string) - file exlude matcher for Lit components
+- `placeholder` (string, required) - placeholder that replaces it to compiled tailwindcss in Lit components
+- `config` (string, default: `tailwind.config.js`) - `tailwind.config.js` path and filename
+- `globalCSS` (string, default: `tailwind.global.css`) - filename of global css for tailwindcss
+
+### tailwind.config.js
 
 ```js
 module.exports = {
@@ -50,7 +76,12 @@ module.exports = {
 @tailwind utilities;
 ```
 
-## Lit component file
+### Lit component file
+
+Replace placeholder to compiled tailwindcss in Lit components that's specified `include` and `exclude` in `rollup.config.js`.
+
+In this file css section, doesn't support and tailwild feature like `@tailwind`.
+You need write `@tailwind` directive in `tailwind.global.css`.
 
 ```ts
 import { html, css, LitElement } from "lit";
@@ -72,3 +103,7 @@ export class SimpleComponent extends LitElement {
   }
 }
 ```
+
+## Thank you
+
+This plugin original is https://github.com/mchasaegh/rollup-plugin-lit-tailwindcss
