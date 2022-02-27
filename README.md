@@ -68,7 +68,10 @@ module.exports = {
 };
 ```
 
-## tailwind.global.css
+### tailwind.global.css
+
+This file will be read before every tailwind compiling.
+You need to set `@tailwind` directive in this file.
 
 ```css
 @tailwind base;
@@ -103,6 +106,11 @@ export class SimpleComponent extends LitElement {
   }
 }
 ```
+
+## Changelog
+
+See https://github.com/masuidrive/rollup-plugin-lit-tailwindcss3/releases/
+
 
 ## Thank you
 
