@@ -45,7 +45,7 @@ function postcssTw(
 }
 
 function escapeCSS(css: string): string {
-  return css.replace(/([:"'`\\])/g, "\\$1");
+  return css.replace(/(["'`\\])/g, "\\$1");
 }
 
 export default function litTailwindcss(options: TailwindPluginOptions) {
