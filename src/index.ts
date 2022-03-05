@@ -17,7 +17,6 @@ interface TailwindPluginOptions {
 const defaultOptions: TailwindPluginOptions = {
   // include: undefined,
   // exclude: undefined,
-  // placeholder: undefined,
   config: "tailwind.config.js",
   globalCSS: "tailwind.global.css",
 };
@@ -25,7 +24,7 @@ const defaultOptions: TailwindPluginOptions = {
 function postcssTw(
   contentFile: string,
   tailwindConfig: any,
-  globalCSS: string,
+  css: string,
   postCSSPlugins: Plugin[]
 ) {
   const plugins = [
@@ -38,7 +37,7 @@ function postcssTw(
     ...postCSSPlugins,
   ];
 
-  return postcss(plugins).process(globalCSS, {
+  return postcss(plugins).process(css, {
     from: undefined,
     to: undefined,
   });
@@ -50,13 +49,12 @@ function escapeCSS(css: string): string {
 
 export default function litTailwindcss(options: TailwindPluginOptions) {
   const opts = { ...defaultOptions, ...options };
-  if (!opts.include || !opts.placeholder)
-    throw new Error('Both "include", "placeholder" options are required');
-
+  if (opts.placeholder) throw new Error('"placeholder" is discontinued');
+  if (!opts.include) throw new Error('Both "include" options is required');
   if (!opts.globalCSS) throw new Error("globalCSS options is required");
   if (!existsSync(opts.globalCSS))
     throw new Error(`Can't find ${opts.globalCSS}`);
-  const css = readFileSync(opts.globalCSS, {
+  const globalCSSString = readFileSync(opts.globalCSS, {
     encoding: "utf8",
   }).toString();
 
@@ -71,15 +69,24 @@ export default function litTailwindcss(options: TailwindPluginOptions) {
 
     transform(code: string, id: string) {
       if (!filter(id)) return;
-      if (opts.placeholder && code.includes(opts.placeholder)) {
+      const cssMatcher = code.match(
+        /css\s*`\s*(\/\/|\/\*+)\s*tailwindcss\s*(|\*\/)((?:[^\\`]+|\\.)*)`/
+      );
+      if (cssMatcher && cssMatcher[3]) {
+        console.log("okko");
+
         return postcssTw(
           id,
           tailwindConfig,
-          css,
+          [globalCSSString, cssMatcher[3]].join("\n"),
           opts.postCSSPlugins ?? []
         ).then((result) => {
           if (result.css) {
-            return code.replace(opts.placeholder!, escapeCSS(result.css));
+            console.log("repkace");
+            return code.replace(
+              cssMatcher[0],
+              `css\`${escapeCSS(result.css)}\``
+            );
           }
           return null;
         });

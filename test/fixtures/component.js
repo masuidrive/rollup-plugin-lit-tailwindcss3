@@ -1,15 +1,16 @@
 import { html, css, LitElement } from 'lit';
 
 export class SimpleComponent extends LitElement {
-  static styles = css`
+  static styles = css`//tailwindcss
   a { font-family: demo-line; }
-  tw_placeholder`;
+  .btn { @apply bg-blue-500; }
+`;
 
   render() {
     return html`<h1
       class="text-purple-400 hover:text-green-500 md:text-red-400 md:hover:text-indigo-900"
     >
-      Hello, world!
+      <button class="btn">Hello world</button>
     </h1>`;
   }
 }

@@ -28,7 +28,6 @@ export default {
   plugins: [
     litTailwind({
       include: "src/components/**/*.ts",
-      placeholder: "tw_placeholder",
       // exclude: "",
       // config: "tailwind.config.js",
       // globalCSS: "tailwind.global.css",
@@ -43,7 +42,6 @@ export default {
 litTailwind({
   include: "src/components/**/*.ts",
   exclude: "**/data/*.ts",
-  placeholder: "tw_placeholder",
   config: "tailwind.config.js",
   globalCSS: "tailwind.global.css",
 })
@@ -51,7 +49,6 @@ litTailwind({
 
 - `include` (string, required) - file matcher for Lit components
 - `exclude` (string) - file exlude matcher for Lit components
-- `placeholder` (string, required) - placeholder that replaces it to compiled tailwindcss in Lit components
 - `config` (string, default: `tailwind.config.js`) - `tailwind.config.js` path and filename
 - `globalCSS` (string, default: `tailwind.global.css`) - filename of global css for tailwindcss
 
@@ -72,7 +69,7 @@ module.exports = {
 ### tailwind.global.css
 
 This file will be read before every tailwind compiling.
-You need to set `@tailwind` directive in this file.
+We recommend to set `@tailwind` directive in this file.
 
 ```css
 @tailwind base;
@@ -82,10 +79,8 @@ You need to set `@tailwind` directive in this file.
 
 ### Lit components file
 
-Replace placeholder to compiled tailwindcss in Lit components that's specified `include` and `exclude` in `rollup.config.js`.
-
-In this file css section, doesn't support and tailwild feature like `@tailwind`.
-You need write `@tailwind` directive in `tailwind.global.css`.
+Processes Lit components specified by `include` and `exclude` in `rollup.config.js`.
+To use tailwindcss, put `// tailwindcss` in the first line of the css string.
 
 ```ts
 import { html, css, LitElement } from "lit";
@@ -94,9 +89,12 @@ import { customElement } from "lit/decorators.js";
 @customElement("simple-footer")
 export class SimpleComponent extends LitElement {
   static styles = css`
-  /* some css. but @tailwind need to write in "tailwind.global.css" */
-
-  tw_placeholder`; // 👈 classes will be injected here
+    // tailwindcss
+    // 👆 must set the above line on the first line of css string to use tailwindcss.
+    .dummy {
+      @apply text-red-500; // can use @apply and other tailwind derectives
+    }
+  `;
 
   render() {
     return html`<h1
