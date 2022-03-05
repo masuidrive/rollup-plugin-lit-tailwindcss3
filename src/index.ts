@@ -73,8 +73,6 @@ export default function litTailwindcss(options: TailwindPluginOptions) {
         /css\s*`\s*(\/\/|\/\*+)\s*tailwindcss\s*(|\*\/)((?:[^\\`]+|\\.)*)`/
       );
       if (cssMatcher && cssMatcher[3]) {
-        console.log("okko");
-
         return postcssTw(
           id,
           tailwindConfig,
@@ -82,7 +80,6 @@ export default function litTailwindcss(options: TailwindPluginOptions) {
           opts.postCSSPlugins ?? []
         ).then((result) => {
           if (result.css) {
-            console.log("repkace");
             return code.replace(
               cssMatcher[0],
               `css\`${escapeCSS(result.css)}\``
